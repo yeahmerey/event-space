@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class AuthsConfig(AppConfig):
-    name = 'auths'
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'apps.auths' 
