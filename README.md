@@ -1,1 +1,1 @@
-Event Space
+Event Space - Midterm project
