@@ -9,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_URLCONF = 'settings.urls'
 WSGI_APPLICATION = 'settings.wsgi.application'
 ASGI_APPLICATION = 'settings.asgi.application'
-# AUTH_USER_MODEL = 'auths.User'
+AUTH_USER_MODEL = 'auths.User'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
