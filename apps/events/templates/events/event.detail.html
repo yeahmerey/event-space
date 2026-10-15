@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event.title }}</title>
+</head>
+<body>
+    <a href="{% url 'events:list' %}">Back to events</a>
+
+    <h1>{{ event.title }}</h1>
+
+    <p>{{ event.description }}</p>
+    <p>Organizer: {{ event.organizer.email }}</p>
+    <p>Category: {{ event.category.name }}</p>
+    <p>Venue: {{ event.venue.name }}</p>
+    <p>Start: {{ event.starts_at }}</p>
+    <p>Capacity: {{ event.capacity }}</p>
+    <p>Status: {{ event.get_status_display }}</p>
+
+    {% if user.is_authenticated and user.pk == event.organizer_id %}
+        <a href="{% url 'events:update' event.pk %}">Edit</a>
+        <a href="{% url 'events:delete' event.pk %}">Delete</a>
+    {% endif %}
+
+    <h2>Images</h2>
+    {% for photo in event.images.all %}
+        <div>
+            <img src="{{ photo.image.url }}"
+                 alt="{{ photo.caption }}"
+                 width="300">
+            <p>{{ photo.caption }}</p>
+        </div>
+    {% empty %}
+        <p>No images available.</p>
+    {% endfor %}
+
+    <h2>Event Schedule</h2>
+    {% for item in event.schedules.all %}
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+        <p>{{ item.starts_at }} - {{ item.ends_at }}</p>
+    {% empty %}
+        <p>No schedule available.</p>
+    {% endfor %}
+</body>
+</html>
