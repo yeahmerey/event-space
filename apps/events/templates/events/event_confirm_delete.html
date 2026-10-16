@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Event</title>
+</head>
+<body>
+    <h1>Delete Event</h1>
+
+    <p>Delete "{{ object.title }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+    </form>
+
+    <a href="{% url 'events:detail' object.pk %}">
+        Cancel
+    </a>
+</body>
+</html>

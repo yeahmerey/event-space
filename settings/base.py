@@ -35,6 +35,8 @@ PROJECT_APPS = [
     'apps.categories', 
     'apps.venues',
     'apps.registrations',
+    'apps.events',
+    'apps.reviews',
 ]
 
 INSTALLED_APPS = DJANGO_AND_THIRD_PARTY_APPS + PROJECT_APPS
@@ -125,3 +127,6 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+

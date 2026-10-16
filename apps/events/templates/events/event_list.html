@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventSpace | Events</title>
+</head>
+<body>
+    <h1>EventSpace</h1>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'events:create' %}">
+            Create event
+        </a>
+    {% endif %}
+
+    <h2>Available Events</h2>
+
+    <form method="get">
+        <input
+            type="text"
+            name="search"
+            value="{{ request.GET.search }}"
+            placeholder="Search events"
+        >
+        <button type="submit">Search</button>
+    </form>
+
+    {% for event in events %}
+        <article>
+            <h3>
+                <a href="{% url 'events:detail' event.pk %}">
+                    {{ event.title }}
+                </a>
+            </h3>
+
+            <p>{{ event.description|truncatewords:25 }}</p>
+            <p>Category: {{ event.category.name }}</p>
+            <p>Venue: {{ event.venue.name }}</p>
+            <p>Date: {{ event.starts_at }}</p>
+            <p>Capacity: {{ event.capacity }}</p>
+        </article>
+        <hr>
+    {% empty %}
+        <p>No published events yet.</p>
+    {% endfor %}
+</body>
+</html>
